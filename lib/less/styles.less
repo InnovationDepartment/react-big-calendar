@@ -1,0 +1,199 @@
+@import './variables.less';
+@import './reset.less';
+
+
+.rbc-calendar {
+  box-sizing: border-box;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.rbc-calendar *,
+.rbc-calendar *:before,
+.rbc-calendar *:after {
+  box-sizing: inherit;
+}
+
+.rbc-abs-full {
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.rbc-ellipsis {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rbc-rtl {
+  direction: rtl;
+}
+
+.rbc-off-range {
+  color: @out-of-range-color;
+}
+
+// .rbc-off-range-bg {
+//   background: @out-of-range-bg-color;
+// }
+
+
+// 2: 'two-before-row',
+// 1: 'one-before-row',
+// 0: 'row-of',
+// 4: 'row-of-inverse',
+// 5: 'one-after-row-inverse',
+// 6: 'two-after-row-inverse'
+
+.one-before-row {
+  .rbc-off-range-bg {
+    /* Safari 4, Chrome 1-9, iOS 3.2-4.3, Android 2.1-3.0 */
+    background-image:
+      -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#f1f6f9));
+
+    /* Safari 5.1, iOS 5.0-6.1, Chrome 10-25, Android 4.0-4.3 */
+    background-image:
+      -webkit-linear-gradient(top, #ffffff, #f1f6f9);
+
+    /* Firefox 3.6 - 15 */
+    background-image:
+      -moz-linear-gradient(top, #ffffff, #f1f6f9);
+
+    /* Opera 11.1 - 12 */
+    background-image:
+      -o-linear-gradient(top, #ffffff, #f1f6f9);
+
+    /* Opera 15+, Chrome 25+, IE 10+, Firefox 16+, Safari 6.1+, iOS 7+, Android 4.4+ */
+    background-image:
+      linear-gradient(to bottom, #ffffff, #f1f6f9);
+    }
+}
+
+.row-of {
+  .rbc-off-range-bg {
+    /* Safari 4, Chrome 1-9, iOS 3.2-4.3, Android 2.1-3.0 */
+    background-image:
+      -webkit-gradient(linear, left top, left bottom, from(#f1f6f9), to(#ebf0f3));
+
+    /* Safari 5.1, iOS 5.0-6.1, Chrome 10-25, Android 4.0-4.3 */
+    background-image:
+      -webkit-linear-gradient(top, #f1f6f9, #ebf0f3);
+
+    /* Firefox 3.6 - 15 */
+    background-image:
+      -moz-linear-gradient(top, #f1f6f9, #ebf0f3);
+
+    /* Opera 11.1 - 12 */
+    background-image:
+      -o-linear-gradient(top, #f1f6f9, #ebf0f3);
+
+    /* Opera 15+, Chrome 25+, IE 10+, Firefox 16+, Safari 6.1+, iOS 7+, Android 4.4+ */
+    background-image:
+      linear-gradient(to bottom, #f1f6f9, #ebf0f3);
+    }
+}
+
+.one-after-row-inverse {
+  .rbc-off-range-bg {
+    /* Safari 4, Chrome 1-9, iOS 3.2-4.3, Android 2.1-3.0 */
+    background-image:
+      -webkit-gradient(linear, left top, left bottom, from(#f1f6f9), to(#ffffff));
+
+    /* Safari 5.1, iOS 5.0-6.1, Chrome 10-25, Android 4.0-4.3 */
+    background-image:
+      -webkit-linear-gradient(top, #f1f6f9, #ffffff);
+
+    /* Firefox 3.6 - 15 */
+    background-image:
+      -moz-linear-gradient(top, #f1f6f9, #ffffff);
+
+    /* Opera 11.1 - 12 */
+    background-image:
+      -o-linear-gradient(top, #f1f6f9, #ffffff);
+
+    /* Opera 15+, Chrome 25+, IE 10+, Firefox 16+, Safari 6.1+, iOS 7+, Android 4.4+ */
+    background-image:
+      linear-gradient(to bottom, #f1f6f9, #ffffff);
+    }
+}
+
+.row-of-inverse {
+  .rbc-off-range-bg {
+    /* Safari 4, Chrome 1-9, iOS 3.2-4.3, Android 2.1-3.0 */
+    background-image:
+      -webkit-gradient(linear, left top, left bottom, from(#ebf0f3), to(#f1f6f9));
+
+    /* Safari 5.1, iOS 5.0-6.1, Chrome 10-25, Android 4.0-4.3 */
+    background-image:
+      -webkit-linear-gradient(top, #ebf0f3, #f1f6f9);
+
+    /* Firefox 3.6 - 15 */
+    background-image:
+      -moz-linear-gradient(top, #ebf0f3, #f1f6f9);
+
+    /* Opera 11.1 - 12 */
+    background-image:
+      -o-linear-gradient(top, #ebf0f3, #f1f6f9);
+
+    /* Opera 15+, Chrome 25+, IE 10+, Firefox 16+, Safari 6.1+, iOS 7+, Android 4.4+ */
+    background-image:
+      linear-gradient(to bottom, #ebf0f3, #f1f6f9);
+    }
+}
+
+
+.rbc-header {
+  overflow: hidden;
+  flex: 1 0 0%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 0 3px;
+  text-align: center;
+  vertical-align: middle;
+  font-weight: bold;
+  font-size: 90%;
+  min-height: 0;
+  border-bottom: 1px solid @cell-border;
+
+  // & + & {
+  //   border-left: 1px solid @cell-border;
+  // }
+
+  .rbc-rtl & + & {
+    border-left-width: 0;
+    border-right: 1px solid @cell-border;
+  }
+
+  & > a {
+    &, &:active, &:visited {
+      color: inherit;
+      text-decoration: none;
+    }
+  }
+}
+
+.rbc-row-content {
+  position: relative;
+  height: 100%;
+  user-select: none;
+  -webkit-user-select: none;
+  z-index: 4;
+}
+
+.rbc-today {
+  background-color: @today-highlight-bg;
+}
+
+
+@import './toolbar.less';
+@import './event.less';
+@import './month.less';
+@import './agenda.less';
+@import './time-grid.less';
