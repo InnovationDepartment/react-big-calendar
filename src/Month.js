@@ -368,7 +368,7 @@ class MonthView extends React.Component {
   measureRowLimit() {
     this.setState({
       needLimitMeasure: false,
-      rowLimit: this.refs.slotRow.getRowLimit(),
+      rowLimit: 10, //this.refs.slotRow.getRowLimit(),
     })
   }
 

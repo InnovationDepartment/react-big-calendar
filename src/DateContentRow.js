@@ -169,7 +169,19 @@ class DateContentRow extends React.Component {
       )
     ))
 
-    let { levels, extra } = eventLevels(segments, Math.max(maxRows - 1, 1))
+    let longEventSegments = segments.filter(segment => {
+      return segment.span > 1
+    })
+
+    let { levels, extra } = eventLevels(
+      longEventSegments,
+      Math.max(maxRows - 1, 1)
+    )
+
+    let longLevels = levels.filter(level => {
+      return
+    })
+
     while (levels.length < minRows) levels.push([])
 
     return (

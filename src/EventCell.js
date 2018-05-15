@@ -25,6 +25,13 @@ let propTypes = {
   onDoubleClick: PropTypes.func.isRequired,
 }
 
+class CampaignEvent extends React.Component {
+  render() {
+    const { event } = this.props
+    return <div style={{ backgroundColor: event.color, height: '4px' }} />
+  }
+}
+
 class EventCell extends React.Component {
   render() {
     let {
@@ -74,6 +81,10 @@ class EventCell extends React.Component {
       continuesAfter,
     }
 
+    // if (!allDay && !continuesPrior && !continuesAfter) {
+    //   return <span style={{background: 'red'}}>{title}</span>
+    // }
+
     return (
       // give EventWrapper some extra info to help it determine whether it
       // it's in a row, etc. Useful for dnd, etc.
@@ -90,17 +101,18 @@ class EventCell extends React.Component {
           onDoubleClick={e => onDoubleClick(event, e)}
         >
           <div className="rbc-event-content" title={tooltip || undefined}>
-            {Event ? (
-              <Event event={event} title={title} isAllDay={allDay} />
-            ) : (
-              title
-            )}
+            <CampaignEvent event={event} title={title} isAllDay={allDay} />
           </div>
         </div>
       </EventWrapper>
     )
   }
 }
+
+// {Event ? (
+// ) : (
+//   title
+// )}
 
 EventCell.propTypes = propTypes
 

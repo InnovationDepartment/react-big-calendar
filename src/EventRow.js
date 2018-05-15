@@ -16,7 +16,7 @@ class EventRow extends React.Component {
     let lastEnd = 1
 
     return (
-      <div className="rbc-row">
+      <div className="rbc-row rbc-segments">
         {segments.reduce((row, { event, left, right, span }, li) => {
           let key = '_lvl_' + li
           let gap = left - lastEnd
