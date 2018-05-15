@@ -67,8 +67,14 @@ class BackgroundCells extends React.Component {
     let { selecting, startIdx, endIdx } = this.state
     let current = getNow()
 
+    const hasOffRange = range.some(date => {
+      return dates.month(currentDate) !== dates.month(date)
+    })
+
     return (
-      <div className="rbc-row-bg">
+      <div
+        className={cn('rbc-row-bg', hasOffRange ? 'rbc-off-range-bg-row' : '')}
+      >
         {range.map((date, index) => {
           let selected = selecting && index >= startIdx && index <= endIdx
           const { className, style } =

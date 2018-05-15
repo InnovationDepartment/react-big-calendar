@@ -4,6 +4,8 @@ import { findDOMNode } from 'react-dom'
 import cn from 'classnames'
 
 import dates from './utils/dates'
+import dateMath from 'date-arithmetic'
+
 import localizer from './localizer'
 import chunk from 'lodash/chunk'
 import debounce from 'lodash/debounce'
@@ -171,7 +173,7 @@ class MonthView extends React.Component {
         scrollY: scrollPos - diff,
       })
     }
-  }, 10)
+  }, 100)
 
   render() {
     let {
@@ -232,6 +234,19 @@ class MonthView extends React.Component {
     events = eventsForWeek(events, week[0], week[week.length - 1], this.props)
     events.sort((a, b) => sortEvents(a, b, this.props))
 
+    const rowClassMap = {
+      '1': 'one-before-row',
+      '0': 'row-of',
+      '-4': 'row-of-inverse',
+      '-5': 'one-after-row-inverse',
+    }
+
+    const position = Math.floor(
+      dateMath.diff(week[0], date, 'day') / 7
+    ).toString()
+
+    const rowSpecialClass = rowClassMap[position] || ''
+
     return (
       <DateContentRow
         key={weekIdx}
@@ -239,7 +254,8 @@ class MonthView extends React.Component {
         container={this.getContainer}
         className={cn(
           'rbc-month-row',
-          infinityScroll ? 'rbc-month-row-infinite' : ''
+          infinityScroll ? 'rbc-month-row-infinite' : '',
+          rowSpecialClass
         )}
         getNow={getNow}
         date={date}

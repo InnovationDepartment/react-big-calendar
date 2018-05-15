@@ -10,7 +10,8 @@ let Basic = () => (
     views={allViews}
     step={60}
     showMultiDayTimes
-    defaultDate={new Date(2015, 3, 1)}
+    infinityScroll={true}
+    defaultDate={new Date(2018, 5, 1)}
   />
 )
 
